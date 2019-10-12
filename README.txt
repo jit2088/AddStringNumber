@@ -21,6 +21,11 @@ java -jar AddStringNumber.jar
 		- AddStringNumber.java
 		- AddStringNumberTest.java
 		- NegativeNumberException.java
+	- To make JUNIT test class run well, please set up the build path
+		- right click on the AddStringNumberTest.java file
+		- select -> Build Path -> Configure Build Path
+		- Select -> Libraries -> Add Library -> Junit
+		- Click Apply and OK
 
 ## All files for this technical interview
 
