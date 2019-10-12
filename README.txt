@@ -1,4 +1,6 @@
 Author: Jin Tang
+Email: jin.tang@usask.ca
+Cell: 306 880 2568
 Date: Oct. 12, 2019
 Technical Interview - String Calculator - 7Shifts
 Language: Java
@@ -13,7 +15,14 @@ https://github.com/jit2088/AddStringNumber.git
 java -jar AddStringNumber.jar
 
 
-## Files 
+## Run from IDE (Eclipse or IntelliJ IDEA)
+	- Create a java project under your IDE
+	- Copy and past files into your java project
+		- AddStringNumber.java
+		- AddStringNumberTest.java
+		- NegativeNumberException.java
+
+## All files for this technical interview
 
 	#	AddStringNumber.jar
 		java -jar AddStringNumber.jar
