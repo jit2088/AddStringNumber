@@ -60,9 +60,7 @@ public class AddStringNumber {
 				valid.add(a);
 			}
 			if (a < 0) {
-
 				negatives.add(a);
-
 			}
 
 		}
@@ -88,9 +86,7 @@ public class AddStringNumber {
 
 			total = total + Integer.parseInt(arr_digits[i]);
 		}
-
 		return total;
-
 	}
 
 	// 2. Change the add() method to Handle new lines in the input format
@@ -268,16 +264,16 @@ public class AddStringNumber {
 
 		// 1. Simple String calculator
 		String numbers1 = "1,2,3";
-		System.out.println("expected 6 and got " + asn.add(numbers1));
+		System.out.println("For " + numbers1 + " expected 6 and got " + asn.add(numbers1));
 
 		// 2. Change the add() method to Handle new lines in the input format
 		String numbers2 = "\n1,2,3";
-		System.out.println("expected 6 and got  " + asn.addHandleNewLines(numbers2));
+		System.out.println("For " + numbers2 + " expected 6 and got  " + asn.addHandleNewLines(numbers2));
 
 		// 3. Change the add() method to support a customized delimiter
 		String numbers3 = "//;\n1;2;3";
 		
-		System.out.println("expected 6 and got " + asn.addWithCustomizedDelimiter(numbers3));
+		System.out.println("For " + numbers3 + " expected 6 and got " + asn.addWithCustomizedDelimiter(numbers3));
 		/*
 		 * 4. Calling add with a negative number should throw an exception:
 		 * “Negatives not allowed”. The exception should list the number(s) that
@@ -285,7 +281,7 @@ public class AddStringNumber {
 		 */
 		String numbers4 = "//@\n2@3@8@-9@-10";
 		try {
-			System.out.println("expected 13 and got " + asn.addWithNegativeNumber(numbers4));
+			System.out.println("For " + numbers4 + " expected 13 and got " + asn.addWithNegativeNumber(numbers4));
 		} catch (NegativeNumberException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -295,7 +291,7 @@ public class AddStringNumber {
 		// 5. Numbers larger than 1000 should be ignored;
 		String numbers5 = "//@\n2@3@8@-9@1001";
 		try {
-			System.out.println("expected 13 and got " + asn.addNoLargerThan1000(numbers5));
+			System.out.println("For " + numbers5 + " expected 13 and got " + asn.addNoLargerThan1000(numbers5));
 		} catch (NegativeNumberException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -304,7 +300,7 @@ public class AddStringNumber {
 		// 6. Delimiters can be arbitrary length
 		String numbers6 = "//***\n1***2***3***1001";
 		try {
-			System.out.println("expected 6 and got " + asn.arbitraryLengthOfDelimiter(numbers6));
+			System.out.println("For " + numbers6 + " expected 6 and got " + asn.arbitraryLengthOfDelimiter(numbers6));
 		} catch (NegativeNumberException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -314,7 +310,7 @@ public class AddStringNumber {
 		 // 7. Allow for mulitiple delimiters
 		 String numbers7 = "//$,@,#\n1$2@3@4#5";
 		 try {
-		 System.out.println("expected 15 and got " + asn.allowForMultipleDelimiters(numbers7));
+		 System.out.println("For " + numbers7 + " expected 15 and got " + asn.allowForMultipleDelimiters(numbers7));
 		 } catch (NegativeNumberException e) {
 		 // TODO Auto-generated catch block
 		 e.printStackTrace();
@@ -325,7 +321,7 @@ public class AddStringNumber {
 		 // arbitrary length
 		 String numbers8 = "//$@$,@@@,###\n1$@$2@@@3###5@@@1";
 		 try {
-		System.out.println("expected 12 and got " +  asn.allowMutipleDelimitersOfArbitraryLength(numbers8));
+		System.out.println("For " + numbers8 + " expected 12 and got " +  asn.allowMutipleDelimitersOfArbitraryLength(numbers8));
 		 } catch (NegativeNumberException e) {
 		 // TODO Auto-generated catch block
 		 e.printStackTrace();
