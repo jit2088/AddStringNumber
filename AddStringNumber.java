@@ -116,6 +116,9 @@ public class AddStringNumber {
 
 		String myStr = numbers.replaceAll("\\s", "").replaceAll("\\\\n", "");
 		String delimiter = myStr.substring(2, 3);
+		if(delimiter.equals("*") || delimiter.equals("$")){
+			delimiter = "\\" + delimiter;
+		}
 		String[] arr_digits = myStr.substring(3).split(delimiter);
 		int total = 0;
 		for (int i = 0; i < arr_digits.length; i++) {

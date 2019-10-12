@@ -19,12 +19,24 @@ public class AddStringNumberTest {
 		//System.out.println(numbers);
 		Assert.assertEquals(6, asn.addHandleNewLines(numbers));
 		
+		String numbers2 = "1,\n2,4";
+		Assert.assertEquals(7, asn.addHandleNewLines(numbers2));
+		
 	}
 
 	@Test
 	public void addWithCustomizedDelimiter() {
-		String numbers = "//;\n1;2;3";
-		Assert.assertEquals(6, asn.addWithCustomizedDelimiter(numbers));
+		String numbers = "//;\n1;3;4";
+		Assert.assertEquals(8, asn.addWithCustomizedDelimiter(numbers));
+		
+		String numbers2 = "//;\n1;3;4";
+		Assert.assertEquals(8, asn.addWithCustomizedDelimiter(numbers2));
+		
+		String numbers3 = "//$\n1$2$3";
+		Assert.assertEquals(6, asn.addWithCustomizedDelimiter(numbers3));
+		
+		String numbers4 = "//@\n1@2@3";
+		Assert.assertEquals(6, asn.addWithCustomizedDelimiter(numbers4));
 	}
 //
 	@Test
