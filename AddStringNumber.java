@@ -167,7 +167,7 @@ public class AddStringNumber {
 
 	// Bones 2
 	// 6. Delimiters can be arbitrary length
-	public int arbitraryLengthOfDelimiters(String numbers) throws NegativeNumberException {
+	public int arbitraryLengthOfDelimiter(String numbers) throws NegativeNumberException {
 
 		if (numbers.length() == 0) {
 			return 0;
@@ -177,7 +177,6 @@ public class AddStringNumber {
 
 		String pattern = createSingleDelimiterPattern(delimiter);
 
-		System.out.println("line 160 " + pattern);
 		String[] arr_digits = myStrs[1].split(pattern);
 		int total = addUp(arr_digits);
 
@@ -241,8 +240,7 @@ public class AddStringNumber {
 				pattern = pattern + createSingleDelimiterPattern(arr_delimiters[i].split(""));
 			}
 		}
-		System.out.println("line 237" + pattern);
-
+		
 		// Get the start_index for subString of digits part after new line
 		String[] arr_digits = myStrs[1].split(pattern);
 
@@ -263,10 +261,75 @@ public class AddStringNumber {
 		return total;
 	}
 
-	
 	//
-	public static void main(String[] args){
+	public static void main(String args[]) {
+
+		AddStringNumber asn = new AddStringNumber();
+
+		// 1. Simple String calculator
+		String numbers1 = "1,2,3";
+		System.out.println("expected 6 and got " + asn.add(numbers1));
+
+		// 2. Change the add() method to Handle new lines in the input format
+		String numbers2 = "\n1,2,3";
+		System.out.println("expected 6 and got  " + asn.addHandleNewLines(numbers2));
+
+		// 3. Change the add() method to support a customized delimiter
+		String numbers3 = "//;\n1;2;3";
 		
+		System.out.println("expected 6 and got " + asn.addWithCustomizedDelimiter(numbers3));
+		/*
+		 * 4. Calling add with a negative number should throw an exception:
+		 * “Negatives not allowed”. The exception should list the number(s) that
+		 * caused the exception
+		 */
+		String numbers4 = "//@\n2@3@8@-9@-10";
+		try {
+			System.out.println("expected 13 and got " + asn.addWithNegativeNumber(numbers4));
+		} catch (NegativeNumberException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Bones 1
+		// 5. Numbers larger than 1000 should be ignored;
+		String numbers5 = "//@\n2@3@8@-9@1001";
+		try {
+			System.out.println("expected 13 and got " + asn.addNoLargerThan1000(numbers5));
+		} catch (NegativeNumberException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Bones 2
+		// 6. Delimiters can be arbitrary length
+		String numbers6 = "//***\n1***2***3***1001";
+		try {
+			System.out.println("expected 6 and got " + asn.arbitraryLengthOfDelimiter(numbers6));
+		} catch (NegativeNumberException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		 // Bones 3
+		 // 7. Allow for mulitiple delimiters
+		 String numbers7 = "//$,@,#\n1$2@3@4#5";
+		 try {
+		 System.out.println("expected 15 and got " + asn.allowForMultipleDelimiters(numbers7));
+		 } catch (NegativeNumberException e) {
+		 // TODO Auto-generated catch block
+		 e.printStackTrace();
+		 }
 		
+		 // Bones 4
+		 // 8. Combine 2 and 3 bonus questions. Allow multiple delimiters of
+		 // arbitrary length
+		 String numbers8 = "//$@$,@@@,###\n1$@$2@@@3###5@@@1";
+		 try {
+		System.out.println("expected 12 and got " +  asn.allowMutipleDelimitersOfArbitraryLength(numbers8));
+		 } catch (NegativeNumberException e) {
+		 // TODO Auto-generated catch block
+		 e.printStackTrace();
+		 }
 	}
+
 }

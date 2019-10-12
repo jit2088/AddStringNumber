@@ -54,7 +54,7 @@ public class AddStringNumberTest {
 	public void arbitraryLengthOfDelimiters() throws NegativeNumberException {
 		try{
 		String numbers = "//***\n1***2***3***1001";
-		Assert.assertEquals(6, asn.arbitraryLengthOfDelimiters(numbers));
+		Assert.assertEquals(6, asn.arbitraryLengthOfDelimiter(numbers));
 		}catch(NegativeNumberException e){
 			System.err.print(e);
 		}
@@ -74,7 +74,7 @@ public class AddStringNumberTest {
 	@Test
 	public void allowMutipleDelimitersOfArbitraryLength() throws NegativeNumberException {
 		try{
-		String numbers = "//$@$,@@@,###\n1$@$2@@@3###5@@@1";
+		String numbers = "//$$$,@@@,###\n1$$$2@@@3###5@@@1";
 		Assert.assertEquals(12, asn.allowMutipleDelimitersOfArbitraryLength(numbers));
 		}catch(NegativeNumberException e){
 			System.err.print(e);
