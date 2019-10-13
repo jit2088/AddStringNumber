@@ -50,14 +50,12 @@ public class AddStringNumber {
 
 		int total = 0;
 		ArrayList<Integer> negatives = new ArrayList<Integer>();
-		ArrayList<Integer> valid = new ArrayList<Integer>();
 		for (int i = 0; i < arr_digits.length; i++) {
 
 			int a = Integer.parseInt(arr_digits[i]);
 
 			if (a > 0 && a <= 1000) {
 				total = total + a;
-				valid.add(a);
 			}
 			if (a < 0) {
 				negatives.add(a);
@@ -100,10 +98,12 @@ public class AddStringNumber {
 		String myStr = numbers.replaceAll("\\s", "").replaceAll("\\\\n", "");
 		String[] arr_digits = myStr.split(",");
 
-		int total = 0;
-		for (int i = 0; i < arr_digits.length; i++) {
-
-			total = total + Integer.parseInt(arr_digits[i]);
+		int total=0;
+		try {
+			total = addUp(arr_digits);
+		} catch (NegativeNumberException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return total;
 	}
@@ -120,10 +120,12 @@ public class AddStringNumber {
 			delimiter = "\\" + delimiter;
 		}
 		String[] arr_digits = myStr.substring(3).split(delimiter);
-		int total = 0;
-		for (int i = 0; i < arr_digits.length; i++) {
-
-			total = total + Integer.parseInt(arr_digits[i]);
+		int total=0;
+		try {
+			total = addUp(arr_digits);
+		} catch (NegativeNumberException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return total;
 	}
@@ -198,20 +200,8 @@ public class AddStringNumber {
 		// Get digits from string
 		String[] arr_digits = myStrs[1].split(delimiters);
 
-		int total = 0;
-		ArrayList<Integer> negatives = new ArrayList<Integer>();
-		for (int i = 0; i < arr_digits.length; i++) {
-
-			int a = Integer.parseInt(arr_digits[i]);
-			if (a > 0 && a < 1000) {
-				total = total + a;
-			} else {
-				negatives.add(a);
-			}
-		}
-		if (negatives.size() > 0) {
-			throw new NegativeNumberException("Negative numbers are not allowed : " + negatives + "\n");
-		}
+		int total = addUp(arr_digits);
+		
 		return total;
 	}
 
@@ -243,20 +233,8 @@ public class AddStringNumber {
 		// Get the start_index for subString of digits part after new line
 		String[] arr_digits = myStrs[1].split(pattern);
 
-		int total = 0;
-		ArrayList<Integer> negatives = new ArrayList<Integer>();
-		for (int i = 0; i < arr_digits.length; i++) {
-
-			int a = Integer.parseInt(arr_digits[i]);
-			if (a > 0 && a < 1000) {
-				total = total + a;
-			} else {
-				negatives.add(a);
-			}
-		}
-		if (negatives.size() > 0) {
-			throw new NegativeNumberException("Negative numbers are not allowed : " + negatives + "\n");
-		}
+		int total = addUp(arr_digits);
+		
 		return total;
 	}
 
