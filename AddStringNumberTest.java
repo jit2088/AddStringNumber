@@ -8,8 +8,8 @@ public class AddStringNumberTest {
 	
 	@Test
 	public void add() {
-		String numbers = "1,2,3";
-		Assert.assertEquals(6, asn.add(numbers));
+		String numbers = "1,2,3,-4";
+		Assert.assertEquals(2, asn.add(numbers));
 	}
 
 	@Test

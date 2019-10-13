@@ -10,6 +10,18 @@ public class AddStringNumber {
 	}
 
 	// Help function
+
+	public int addUpIncludeNegatives(String[] arr_digits) {
+		int total = 0;
+		for (int i = 0; i < arr_digits.length; i++) {
+
+			int a = Integer.parseInt(arr_digits[i]);
+
+			total = total + a;
+		}
+		return total;
+	}
+
 	public String createSingleDelimiterPattern(String[] delimiter) {
 		String pattern = "(";
 		// replace '*' sign to avoid pattern match issue
@@ -46,7 +58,7 @@ public class AddStringNumber {
 		return delimiters;
 	}
 
-	public int addUp(String[] arr_digits) throws NegativeNumberException {
+	public int addUpExcludeNegatives(String[] arr_digits) throws NegativeNumberException {
 
 		int total = 0;
 		ArrayList<Integer> negatives = new ArrayList<Integer>();
@@ -79,11 +91,8 @@ public class AddStringNumber {
 
 		String[] arr_digits = numbers.replaceAll("\\s", "").split(",");
 
-		int total = 0;
-		for (int i = 0; i < arr_digits.length; i++) {
+		int total = addUpIncludeNegatives(arr_digits);
 
-			total = total + Integer.parseInt(arr_digits[i]);
-		}
 		return total;
 	}
 
@@ -98,13 +107,8 @@ public class AddStringNumber {
 		String myStr = numbers.replaceAll("\\s", "").replaceAll("\\\\n", "");
 		String[] arr_digits = myStr.split(",");
 
-		int total=0;
-		try {
-			total = addUp(arr_digits);
-		} catch (NegativeNumberException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		int total = addUpIncludeNegatives(arr_digits);
+
 		return total;
 	}
 
@@ -116,17 +120,12 @@ public class AddStringNumber {
 
 		String myStr = numbers.replaceAll("\\s", "").replaceAll("\\\\n", "");
 		String delimiter = myStr.substring(2, 3);
-		if(delimiter.equals("*") || delimiter.equals("$")){
+		if (delimiter.equals("*") || delimiter.equals("$")) {
 			delimiter = "\\" + delimiter;
 		}
 		String[] arr_digits = myStr.substring(3).split(delimiter);
-		int total=0;
-		try {
-			total = addUp(arr_digits);
-		} catch (NegativeNumberException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		int total = addUpIncludeNegatives(arr_digits);
+
 		return total;
 	}
 
@@ -145,7 +144,7 @@ public class AddStringNumber {
 		String delimiter = numbers.replaceAll("\\s", "").substring(2, 3);
 		String[] arr_digits = numbers.replaceAll("\\s", "").substring(3).replaceAll("\\\\n", "").split(delimiter);
 
-		int total = addUp(arr_digits);
+		int total = addUpExcludeNegatives(arr_digits);
 
 		return total;
 	}
@@ -161,7 +160,7 @@ public class AddStringNumber {
 		String myStr = numbers.replaceAll("\\s", "").replaceAll("\\\\n", "");
 		String delimiter = myStr.substring(2, 3);
 		String[] arr_digits = myStr.substring(3).replaceAll("\\\\n", "").split(delimiter);
-		int total = addUp(arr_digits);
+		int total = addUpExcludeNegatives(arr_digits);
 
 		return total;
 	}
@@ -179,7 +178,7 @@ public class AddStringNumber {
 		String pattern = createSingleDelimiterPattern(delimiter);
 
 		String[] arr_digits = myStrs[1].split(pattern);
-		int total = addUp(arr_digits);
+		int total = addUpExcludeNegatives(arr_digits);
 
 		return total;
 
@@ -200,8 +199,8 @@ public class AddStringNumber {
 		// Get digits from string
 		String[] arr_digits = myStrs[1].split(delimiters);
 
-		int total = addUp(arr_digits);
-		
+		int total = addUpExcludeNegatives(arr_digits);
+
 		return total;
 	}
 
@@ -229,12 +228,12 @@ public class AddStringNumber {
 				pattern = pattern + createSingleDelimiterPattern(arr_delimiters[i].split(""));
 			}
 		}
-		
+
 		// Get the start_index for subString of digits part after new line
 		String[] arr_digits = myStrs[1].split(pattern);
 
-		int total = addUp(arr_digits);
-		
+		int total = addUpExcludeNegatives(arr_digits);
+
 		return total;
 	}
 
@@ -253,7 +252,7 @@ public class AddStringNumber {
 
 		// 3. Change the add() method to support a customized delimiter
 		String numbers3 = "//;\n1;2;3";
-		
+
 		System.out.println("For " + numbers3 + " expected 6 and got " + asn.addWithCustomizedDelimiter(numbers3));
 		/*
 		 * 4. Calling add with a negative number should throw an exception:
@@ -287,26 +286,27 @@ public class AddStringNumber {
 			e.printStackTrace();
 		}
 
-		 // Bones 3
-		 // 7. Allow for mulitiple delimiters
-		 String numbers7 = "//$,@,#\n1$2@3@4#5";
-		 try {
-		 System.out.println("For " + numbers7 + " expected 15 and got " + asn.allowForMultipleDelimiters(numbers7));
-		 } catch (NegativeNumberException e) {
-		 // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 }
-		
-		 // Bones 4
-		 // 8. Combine 2 and 3 bonus questions. Allow multiple delimiters of
-		 // arbitrary length
-		 String numbers8 = "//$@$,@@@,###\n1$@$2@@@3###5@@@1";
-		 try {
-		System.out.println("For " + numbers8 + " expected 12 and got " +  asn.allowMutipleDelimitersOfArbitraryLength(numbers8));
-		 } catch (NegativeNumberException e) {
-		 // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 }
+		// Bones 3
+		// 7. Allow for mulitiple delimiters
+		String numbers7 = "//$,@,#\n1$2@3@4#5";
+		try {
+			System.out.println("For " + numbers7 + " expected 15 and got " + asn.allowForMultipleDelimiters(numbers7));
+		} catch (NegativeNumberException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Bones 4
+		// 8. Combine 2 and 3 bonus questions. Allow multiple delimiters of
+		// arbitrary length
+		String numbers8 = "//$@$,@@@,###\n1$@$2@@@3###5@@@1";
+		try {
+			System.out.println("For " + numbers8 + " expected 12 and got "
+					+ asn.allowMutipleDelimitersOfArbitraryLength(numbers8));
+		} catch (NegativeNumberException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
